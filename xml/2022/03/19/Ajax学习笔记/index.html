@@ -1,0 +1,1009 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/blog/img/favicon.png">
+  <link rel="icon" href="/blog/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="BETA">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、服务器与客户端 1）网页中如何请求数据如果需要在网页中请求服务器上的数据资源，则需要用到XMLHttpRequest对象 XMLHttpRequest(简称xhr)是浏览器提供的js成员，通过它，可以请求服务器上的数据资源 最简单的用啊： 1var xhrObj &#x3D; new XMLHttpRequest();  2)资源的请求方式请求方式有许多种，最常见的是get和post请求  get请求通">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ajax学习笔记">
+<meta property="og:url" content="http://www.techbeta.top/blog/2022/03/19/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="BETA的技术分享小站">
+<meta property="og:description" content="一、服务器与客户端 1）网页中如何请求数据如果需要在网页中请求服务器上的数据资源，则需要用到XMLHttpRequest对象 XMLHttpRequest(简称xhr)是浏览器提供的js成员，通过它，可以请求服务器上的数据资源 最简单的用啊： 1var xhrObj &#x3D; new XMLHttpRequest();  2)资源的请求方式请求方式有许多种，最常见的是get和post请求  get请求通">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.techbeta.top/blog/img/pageimg/ajax.jpg">
+<meta property="article:published_time" content="2022-03-19T05:12:59.000Z">
+<meta property="article:modified_time" content="2022-03-19T10:04:17.600Z">
+<meta property="article:author" content="BETA">
+<meta property="article:tag" content="Web">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="JS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://www.techbeta.top/blog/img/pageimg/ajax.jpg">
+  
+  
+  <title>Ajax学习笔记 - BETA的技术分享小站</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/blog/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"www.techbeta.top","root":"/blog/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":"c692a17b6d8dc9a194a364e7c2f8d5d1","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/blog/local-search.xml"};
+  </script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/blog/">
+      <strong>BETA&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/blog/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Ajax学习笔记">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-19 13:12" pubdate>
+        2022年3月19日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      10k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      86 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Ajax学习笔记</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2 个月前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h3 id="一、服务器与客户端"><a href="#一、服务器与客户端" class="headerlink" title="一、服务器与客户端"></a>一、服务器与客户端</h3><p><img src="https://s2.loli.net/2022/03/18/oPvxsOjHABYEWhk.png" srcset="/blog/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="1）网页中如何请求数据"><a href="#1）网页中如何请求数据" class="headerlink" title="1）网页中如何请求数据"></a>1）网页中如何请求数据</h4><p>如果需要在网页中请求服务器上的数据资源，则需要用到XMLHttpRequest对象</p>
+<p>XMLHttpRequest(简称xhr)是浏览器提供的js成员，通过它，可以请求服务器上的数据资源</p>
+<p>最简单的用啊：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> xhrObj = <span class="hljs-keyword">new</span> <span class="hljs-title class_">XMLHttpRequest</span>();<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-资源的请求方式"><a href="#2-资源的请求方式" class="headerlink" title="2)资源的请求方式"></a>2)资源的请求方式</h4><p>请求方式有许多种，最常见的是get和post请求</p>
+<ul>
+<li>get请求通常用于获取服务端资源（向服务器要资源） 例如：根据URL地址，从服务器获取HTML文件、CSS文件、JS文件、图片文件、数据资源等</li>
+<li>post请求通常用于向服务器提交数据（往服务器发送资源）例如：登录时向服务器提交的登录信息、注册时向服务器提交的注册信息等</li>
+</ul>
+<h4 id="3-Ajax"><a href="#3-Ajax" class="headerlink" title="3)Ajax"></a>3)Ajax</h4><p>Ajax的全称是Asynchronous Javascript And XML(异步JavaScript和XML)</p>
+<p>通俗理解：利用XMLHttpRequest进行交互</p>
+<h4 id="4）JQuery中的Ajax"><a href="#4）JQuery中的Ajax" class="headerlink" title="4）JQuery中的Ajax"></a>4）JQuery中的Ajax</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js">$.<span class="hljs-title function_">get</span>(url,[data],callback)<br>$.<span class="hljs-title function_">post</span>(url,[data],callback)<br>$.<span class="hljs-title function_">ajax</span>(&#123;<br>    <span class="hljs-attr">type</span>:<span class="hljs-string">&#x27;&#x27;</span>,<span class="hljs-comment">//请求方式,get或post</span><br>    <span class="hljs-attr">url</span>:<span class="hljs-string">&#x27;&#x27;</span>,<br>    <span class="hljs-attr">data</span>:&#123;&#125;,<br>    <span class="hljs-attr">success</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params">res</span>)&#123; &#125;<span class="hljs-comment">//回到函数</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h4 id="5-接口"><a href="#5-接口" class="headerlink" title="5)接口"></a>5)接口</h4><p>使用Ajax请求数据时，被请求的URL地址，就叫做数据接口（简称接口），同时，每个接口必须有请求方式</p>
+<p>例如</p>
+<p><a target="_blank" rel="noopener" href="http://www.liulongbin.top:3006/api/getbooks">http://www.liulongbin.top:3006/api/getbooks</a> 获取图书列表的接口（GET请求）</p>
+<p><a target="_blank" rel="noopener" href="http://www.liulongbin.top:3006/api/addbooks">http://www.liulongbin.top:3006/api/addbooks</a> 添加图书列表的接口（POST请求）</p>
+<h3 id="二、form表单的基本使用"><a href="#二、form表单的基本使用" class="headerlink" title="二、form表单的基本使用"></a>二、form表单的基本使用</h3><h4 id="1）标签的属性"><a href="#1）标签的属性" class="headerlink" title="1）标签的属性"></a>1）<form>标签的属性</h4><ul>
+<li><p>action属性用来规定当前提交表单时，向何处发送表单数据</p>
+</li>
+<li><p>target属性用来规定在何处打开action URL</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>_blank</td>
+<td>在新窗口中打开</td>
+</tr>
+<tr>
+<td>_self</td>
+<td>默认。在相同框架中打开</td>
+</tr>
+<tr>
+<td>_parent</td>
+<td>在父框架集中打开（很少用）</td>
+</tr>
+<tr>
+<td>_top</td>
+<td>在整个窗口中打开（很少用）</td>
+</tr>
+<tr>
+<td>framename</td>
+<td>在指定框架中打开（很少用）</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>method属性用来规定以何种方式把表单数据提交到html(get、post，默认get)</p>
+</li>
+<li><p>enctype 属性用来规定发送编码</p>
+</li>
+</ul>
+<p>涉及到文件上传操作时，必须将enctype设置为multipart/form-data</p>
+<p>默认值为application/x-www-form-urlencoded ，不涉及文件上传不需要改</p>
+<h4 id="2-表单的同步提交"><a href="#2-表单的同步提交" class="headerlink" title="2)表单的同步提交"></a>2)表单的同步提交</h4><p>通过点击submit按钮，触发表单提交的操作，从而使页面跳转到action URL的行为，叫做表单的同步提交</p>
+<p><strong>表单的同步提交的缺点</strong></p>
+<ol>
+<li>页面会发生跳转</li>
+<li>页面之前的状态和数据会丢失</li>
+</ol>
+<p>解决方案：表单只负责采集数据，Ajax负责将数据提交到服务器</p>
+<h3 id="三、Ajax加强"><a href="#三、Ajax加强" class="headerlink" title="三、Ajax加强"></a>三、Ajax加强</h3><h4 id="1）XMLHttpRequest的基本使用"><a href="#1）XMLHttpRequest的基本使用" class="headerlink" title="1）XMLHttpRequest的基本使用"></a>1）XMLHttpRequest的基本使用</h4><p><img src="https://s2.loli.net/2022/03/18/QB6IoWshtdRJTF2.png" srcset="/blog/img/loading.gif" lazyload alt="image.png"></p>
+<h5 id="1-使用xhr发起get请求"><a href="#1-使用xhr发起get请求" class="headerlink" title="1.使用xhr发起get请求"></a>1.使用xhr发起get请求</h5><p>​    ①创建xhr对象</p>
+<p>​    ②调用xhr.open()函数</p>
+<p>​    ③调用xhr.send()函数</p>
+<p>​    ④监听xhr.onreadystatechange事件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//1.创建xhr对象</span><br><span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">XMLHttpRequst</span>()<br><span class="hljs-comment">//2.调用open函数，指定请求方式与URL地址</span><br>xhr.<span class="hljs-title function_">open</span>(<span class="hljs-string">&#x27;GET&#x27;</span>,<span class="hljs-string">&#x27;http://www.liulongbin.top:3006/api/getbooks&#x27;</span>)<br><span class="hljs-comment">//3.调用send函数，发起Ajax请求</span><br>xhr.<span class="hljs-title function_">send</span>()<br><span class="hljs-comment">//4.监听onreadystatechange事件</span><br>xhr.<span class="hljs-property">onreadystatechange</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-comment">//4.1监听xhr对象的请求状态(readyState)与服务器响应的状态(status)</span><br>    <span class="hljs-keyword">if</span>(xhr.<span class="hljs-property">readyState</span> == <span class="hljs-number">4</span> &amp;&amp; xhr.<span class="hljs-property">status</span> == <span class="hljs-number">200</span>)&#123;<br>        <span class="hljs-comment">//数据获取成功</span><br>        <span class="hljs-comment">//4.2打印服务器响应回来的数据</span><br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(xhr.<span class="hljs-property">reponseText</span>)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h5 id="2-了解xhr对象的readyState属性"><a href="#2-了解xhr对象的readyState属性" class="headerlink" title="2.了解xhr对象的readyState属性"></a>2.了解xhr对象的readyState属性</h5><table>
+<thead>
+<tr>
+<th>值</th>
+<th>状态</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>UNSENT</td>
+<td>XMLHttpRequest对象已被创建，但尚未调用open()方法</td>
+</tr>
+<tr>
+<td>1</td>
+<td>OPENED</td>
+<td>open()方法已经被调用</td>
+</tr>
+<tr>
+<td>2</td>
+<td>HEADERS_RECEIVED</td>
+<td>send()方法已经被调用，响应头也已经被接收</td>
+</tr>
+<tr>
+<td>3</td>
+<td>LOADING</td>
+<td>数据接收中，此时response属性中已经包含部分数据</td>
+</tr>
+<tr>
+<td>4</td>
+<td>DONE</td>
+<td>Ajax请求完成，这意味着数据传输已经彻底完成或失败</td>
+</tr>
+</tbody></table>
+<h5 id="3-使用xhr发起带参数的GET请求"><a href="#3-使用xhr发起带参数的GET请求" class="headerlink" title="3.使用xhr发起带参数的GET请求"></a>3.使用xhr发起带参数的GET请求</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">xhr.<span class="hljs-title function_">open</span>(<span class="hljs-string">&#x27;GET&#x27;</span>,<span class="hljs-string">&#x27;http://www.liulongbin.top:3006/api/getbooks?id=1&#x27;</span>) <span class="hljs-comment">//在后面加问号&#x27;?&#x27;和参数</span><br></code></pre></td></tr></table></figure>
+
+<p>这种在URL地址后面拼接的参数，叫做查询字符串</p>
+<h5 id="4-查询字符串"><a href="#4-查询字符串" class="headerlink" title="4.查询字符串"></a>4.查询字符串</h5><p>定义：查询字符串(URL参数)是指在URL的末尾加上用于向服务器发送信息的字符串（变量）</p>
+<p>格式：将英文的?放在URL的末尾，然后再加上参数=值，想加上多个参数的话，使用&amp;符号进行分隔。以这个形式，可以将想要发送给服务器的数据添加到URL中</p>
+<h5 id="5-URL编码"><a href="#5-URL编码" class="headerlink" title="5.URL编码"></a>5.URL编码</h5><p>URL编码：使用英文字符去表示非英文字符</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js">xhr.<span class="hljs-title function_">open</span>(<span class="hljs-string">&#x27;GET&#x27;</span>,<span class="hljs-string">&#x27;http://www.liulongbin.top:3006/api/getbooks?id=1&amp;bookname=西游记&#x27;</span>)<br><span class="hljs-comment">//经过URL编码后</span><br>xhr.<span class="hljs-title function_">open</span>(<span class="hljs-string">&#x27;GET&#x27;</span>,<span class="hljs-string">&#x27;http://www.liulongbin.top:3006/api/getbooks?id=1&amp;bookname=%E%A%5%BF%E6%B8%D8%E8%AE%B0&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>浏览器提供了URL编码与解码的API，分别是：</p>
+<ul>
+<li>encodeURI()编码的函数</li>
+<li>decodeURI()解码的函数</li>
+</ul>
+<h5 id="6-使用xhr发起POST请求"><a href="#6-使用xhr发起POST请求" class="headerlink" title="6.使用xhr发起POST请求"></a>6.使用xhr发起POST请求</h5><p>步骤：</p>
+<p>​    ①创建xhr对象</p>
+<p>​    ②调用xhr.open()函数</p>
+<p>​    ③设置Content-Type属性（固定写法）</p>
+<p>​    ④调用xhr.send()函数，同时指定要发送的数据</p>
+<p>​    ⑤监听xhr.onreadystatechange事件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//1.创建xhr对象</span><br><span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">XMLHttpRequst</span>()<br><span class="hljs-comment">//2.调用open函数，指定请求方式与URL地址</span><br>xhr.<span class="hljs-title function_">open</span>(<span class="hljs-string">&#x27;POST&#x27;</span>,<span class="hljs-string">&#x27;http://www.liulongbin.top:3006/api/addbooks&#x27;</span>)<br><span class="hljs-comment">//3.设置Content-Type属性（固定写法）</span><br>xhr.<span class="hljs-title function_">setRequestHead</span>(<span class="hljs-string">&#x27;Content-Type&#x27;</span>,<span class="hljs-string">&#x27;application/x-www-form-urlencod&#x27;</span>)<br><span class="hljs-comment">//4.调用send函数，同时将数据以查询字符串的形式，提交给服务器</span><br>xhr.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;bookname=水浒传&amp;author=施耐庵&amp;publisher=天津图书出版社&#x27;</span>)<br><span class="hljs-comment">//5.监听onreadystatechange事件</span><br>xhr.<span class="hljs-property">onreadystatechange</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-comment">//4.1监听xhr对象的请求状态(readyState)与服务器响应的状态(status)</span><br>    <span class="hljs-keyword">if</span>(xhr.<span class="hljs-property">readyState</span> == <span class="hljs-number">4</span> &amp;&amp; xhr.<span class="hljs-property">status</span> == <span class="hljs-number">200</span>)&#123;<br>        <span class="hljs-comment">//数据获取成功</span><br>        <span class="hljs-comment">//4.2打印服务器响应回来的数据</span><br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(xhr.<span class="hljs-property">reponseText</span>)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-数据交换格式"><a href="#2-数据交换格式" class="headerlink" title="2)数据交换格式"></a>2)数据交换格式</h4><p>数据交换格式，就是服务器端与客户端之间进行数据传输与交换的格式</p>
+<p>前端领域，经常提及的两种交换格式分别是XML和JSON，其中JSON用的最多</p>
+<h5 id="1-XML"><a href="#1-XML" class="headerlink" title="1.XML"></a>1.XML</h5><p>XML全称是Extensible Markup Language，即可扩展标记语言</p>
+<p>XML和HTML虽然都是标记语言，但是它们之间没有任何关系</p>
+<ul>
+<li>HTML被设计用来描述网页上的内容，是网页内容的载体</li>
+<li>XML被设计用来传输和存储数据，是数据的载体</li>
+</ul>
+<p><strong>XML的缺点</strong></p>
+<p>①格式臃肿，和数据无关的代码多，体积大，传输效率低</p>
+<p>②在JS中解析XML比较麻烦</p>
+<h5 id="2-JSON"><a href="#2-JSON" class="headerlink" title="2.JSON"></a>2.JSON</h5><p>JSON全称是JavaScript Object Notation，即“JavaScript对象表示法”，JSON就是JS中对象和数组的字符串表示法，他使用文本表示一个和JS对象或数组的信息，因此，JSON的本质就是字符串</p>
+<p>作用：轻量级的文本数据交换格式，更小、更快、更易解析</p>
+<h5 id="3-JSON的两种结构"><a href="#3-JSON的两种结构" class="headerlink" title="3.JSON的两种结构"></a>3.JSON的两种结构</h5><p>对象结构：对象结构在JSON中表示为用{}括起来的内容，数据结构为{key:value,key:value,….}的键值对形式，key必须是英文的双引号包裹的字符串，value可以是数字、字符串（也要双引号包裹）、布尔值、null、数组、对象6种属性（不能是undefine、function）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js">&#123;<br>    <span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;zs&quot;</span>,<br>    <span class="hljs-string">&quot;age&quot;</span>:<span class="hljs-number">20</span>,<br>   	<span class="hljs-string">&quot;gender&quot;</span>:<span class="hljs-string">&quot;男&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>数组结构：数组结构在JSON种表示为[]括起来的内容。数据结构为[“java”,”javascript”,30,true…]。数组种数据的类型可以是数字、字符串（也要双引号包裹）、布尔值、null、数组、对象6种属性（不能是undefine、function）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">[<span class="hljs-string">&quot;java&quot;</span>,<span class="hljs-string">&quot;python&quot;</span>,<span class="hljs-string">&quot;c&quot;</span>]<br></code></pre></td></tr></table></figure>
+
+<h5 id="4-JSON和JS对象的互转"><a href="#4-JSON和JS对象的互转" class="headerlink" title="4.JSON和JS对象的互转"></a>4.JSON和JS对象的互转</h5><p>JSON -&gt; obj:  JSON.parse()  称作JSON反序列化</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> obj = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(<span class="hljs-string">&#x27;&#123;&quot;a&quot;:&quot;Hello&quot;,&quot;b&quot;:&quot;World&quot;&#125;&#x27;</span>)<br><span class="hljs-comment">//结果是&#123;a:&#x27;Hello&#x27;,b:&#x27;World&#x27;&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>obj -&gt; JSON: JSON.stringify() 称作JSON序列化</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> json = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(&#123;<span class="hljs-attr">a</span>:<span class="hljs-string">&#x27;Hello&#x27;</span>,<span class="hljs-attr">b</span>:<span class="hljs-string">&#x27;World&#x27;</span>&#125;)<br><span class="hljs-comment">//结果是&#x27;&#123;&quot;a&quot;:&quot;Hello&quot;,&quot;b&quot;:&quot;World&quot;&#125;&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="3）XMLHttpRequest-Level2的新特性"><a href="#3）XMLHttpRequest-Level2的新特性" class="headerlink" title="3）XMLHttpRequest Level2的新特性"></a>3）XMLHttpRequest Level2的新特性</h4><h5 id="1-旧版XHR的缺点"><a href="#1-旧版XHR的缺点" class="headerlink" title="1.旧版XHR的缺点"></a>1.旧版XHR的缺点</h5><p>①只支持文本数据的传输，无法用来读取和上传文件</p>
+<p>②传送和接收数据时，没有进度信息，只能提升有没有完成</p>
+<h5 id="2-XMLHttpRequest-Level2的新功能"><a href="#2-XMLHttpRequest-Level2的新功能" class="headerlink" title="2.XMLHttpRequest Level2的新功能"></a>2.XMLHttpRequest Level2的新功能</h5><p>①可以设置HTTP请求的时限</p>
+<p>②可以使用FormData对象管理表单数据</p>
+<p>③可以上传文件</p>
+<p>④可以获得数据传输的进度信息</p>
+<h5 id="3-设置HTTP请求时限"><a href="#3-设置HTTP请求时限" class="headerlink" title="3.设置HTTP请求时限"></a>3.设置HTTP请求时限</h5><p>xhr的timeout属性可以设置时限</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">xhr.<span class="hljs-property">timeout</span> = <span class="hljs-number">3000</span> <span class="hljs-comment">//3000毫秒</span><br></code></pre></td></tr></table></figure>
+
+<p>与之配套的还有一个timeout事件，用来指定回调函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js">xhr.<span class="hljs-property">ontimeout</span> = <span class="hljs-title function_">finction</span>(<span class="hljs-params">event</span>)&#123;<br>    <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;请求超时！&#x27;</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h5 id="4-FormData对象管理表单数据"><a href="#4-FormData对象管理表单数据" class="headerlink" title="4.FormData对象管理表单数据"></a>4.FormData对象管理表单数据</h5><p>FormData模拟表单提交</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//1.新建FormData对象</span><br><span class="hljs-keyword">var</span> fd = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FormData</span>()<br><span class="hljs-comment">//2.为FormData添加表单项</span><br>fd.<span class="hljs-title function_">append</span>(<span class="hljs-string">&#x27;uname&#x27;</span>,<span class="hljs-string">&#x27;zs&#x27;</span>)<br>fd.<span class="hljs-title function_">append</span>(<span class="hljs-string">&#x27;upwd&#x27;</span>,<span class="hljs-string">&#x27;123456&#x27;</span>)<br><span class="hljs-comment">//3.创建XHR对象</span><br><span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">XMLHttpRequest</span>()<br><span class="hljs-comment">//4.指定请求类型与URL地址</span><br>xhr.<span class="hljs-title function_">open</span>(<span class="hljs-string">&#x27;POST&#x27;</span>,<span class="hljs-string">&#x27;URL&#x27;</span>)<br><span class="hljs-comment">//5.直接提交FormData对象，与提交网页表单的效果完全一样</span><br>xhr.<span class="hljs-title function_">send</span>(fd)<br></code></pre></td></tr></table></figure>
+
+<p>FormData也可以用来获取网页表单的值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//获取表单元素</span><br><span class="hljs-keyword">var</span> form = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;#form1&#x27;</span>)<br><span class="hljs-comment">//监听表单的submit事件</span><br>form.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-params"><span class="hljs-string">&#x27;submit&#x27;</span>,cuntion(e)</span>)&#123;<br>    e.<span class="hljs-title function_">preventDefault</span>() <span class="hljs-comment">//阻止默认提交</span><br>    <span class="hljs-comment">//根据form表单创建FormData对象，会自动将表单数据填充到FormData对象中</span><br>    <span class="hljs-keyword">var</span> fd = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DormData</span>(form)<br>    <span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">XMLHttpRequest</span>()<br>    xhr.<span class="hljs-title function_">open</span>(<span class="hljs-string">&#x27;POST&#x27;</span>,<span class="hljs-string">&#x27;URL&#x27;</span>)<br>    xhr.<span class="hljs-title function_">send</span>(fd)<br>    xhr.<span class="hljs-property">onreadystatechange</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>        <br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h5 id="5-上传文件"><a href="#5-上传文件" class="headerlink" title="5.上传文件"></a>5.上传文件</h5><p>①定义UI结构</p>
+<p>②验证是否选择了文件</p>
+<p>③向FormData中追加文件</p>
+<p>④使用xhr发起上传文件的请求</p>
+<p>⑤监听onreadystatechange事件</p>
+<h6 id="1-定义UI结构"><a href="#1-定义UI结构" class="headerlink" title="1.定义UI结构"></a><strong>1.定义UI结构</strong></h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- 1.文件选择框 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;file&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;file1&quot;</span> /&gt;</span><br><span class="hljs-comment">&lt;!-- 2.上传按钮 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;btnUpload&quot;</span>&gt;</span>上传文件<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span><br><span class="hljs-comment">&lt;!-- 3.显示上传到服务器上的图片 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;img&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;800&quot;</span> /&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h6 id="2-验证是否选择了文件"><a href="#2-验证是否选择了文件" class="headerlink" title="2.验证是否选择了文件"></a><strong>2.验证是否选择了文件</strong></h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//1.获取上传文件按钮</span><br><span class="hljs-keyword">var</span> btnUpload = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;#btnUpload&#x27;</span>)<br><span class="hljs-comment">//2.为按钮添加click事件监听</span><br>btnUpload.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>,<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>	<span class="hljs-comment">//3.获取到选择的文件列表</span><br>    <span class="hljs-keyword">var</span> files = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;#file1&#x27;</span>).<span class="hljs-property">files</span><br>    <span class="hljs-keyword">if</span>(files.<span class="hljs-property">length</span> &lt;= <span class="hljs-number">0</span>)&#123; <span class="hljs-comment">//判断是否有文件</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;请选择要上传的文件！&#x27;</span>)<br>    &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h6 id="3-向FormData中追加文件"><a href="#3-向FormData中追加文件" class="headerlink" title="3.向FormData中追加文件"></a><strong>3.向FormData中追加文件</strong></h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//1.创建FormData对象</span><br><span class="hljs-keyword">var</span> fd = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FormData</span>()<br><span class="hljs-comment">//2.向FormData中追加文件</span><br>fd.<span class="hljs-title function_">append</span>(<span class="hljs-string">&#x27;avartor&#x27;</span>,files[<span class="hljs-number">0</span>])<br></code></pre></td></tr></table></figure>
+
+<h5 id="6-显示文件上传进度"><a href="#6-显示文件上传进度" class="headerlink" title="6.显示文件上传进度"></a>6.显示文件上传进度</h5><p>可以通过监听xhr.upload.onprogress事件来获取文件的上传进度</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">XMLHttpRequest</span>()<br><span class="hljs-comment">//监听xhr.upload的onprogress事件</span><br>xhr.<span class="hljs-property">upload</span>.<span class="hljs-property">onprogress</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)&#123;<br>    <span class="hljs-comment">//e.lengthComputable是一个布尔值，表示当前上传的资源是否具有可计算的长度</span><br>    <span class="hljs-keyword">if</span>(e.<span class="hljs-property">lengthComputable</span>)&#123;<br>		<span class="hljs-comment">//e.loaded已传输的字节</span><br>      	<span class="hljs-comment">//e,total需传输的字节</span><br>        <span class="hljs-keyword">var</span> percentComplete = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">ceil</span>((e.<span class="hljs-property">loaded</span> / e.<span class="hljs-property">total</span>) * <span class="hljs-number">100</span>)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="4-axios"><a href="#4-axios" class="headerlink" title="4)axios"></a>4)axios</h4><p>Axios是专注于网络数据请求的库</p>
+<p>相比于原生的XMLHttpRequest对象，axios更简单易用</p>
+<p>相比于jQuery，axios更加轻量化，只专注于网络数据请求</p>
+<p><strong>axios发起get请求的语法</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;url&#x27;</span>,&#123;<span class="hljs-attr">params</span>:&#123;<span class="hljs-comment">/*参数*/</span>&#125;&#125;).<span class="hljs-title function_">then</span>(callback)<br></code></pre></td></tr></table></figure>
+
+<p><strong>axios发起post请求的语法</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">axios.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;url&#x27;</span>,&#123;<span class="hljs-comment">/*参数*/</span>&#125;).<span class="hljs-title function_">then</span>(callback)<br></code></pre></td></tr></table></figure>
+
+<p><strong>直接使用axios发起请求</strong></p>
+<p>axios也提供了类似于jQuery中$.ajax()的函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">axios</span>(&#123;<br>    <span class="hljs-attr">method</span>:<span class="hljs-string">&#x27;请求类型&#x27;</span>,<br>    <span class="hljs-attr">url</span>:<span class="hljs-string">&#x27;请求的URL地址&#x27;</span>,<br>    <span class="hljs-attr">data</span>:&#123;<span class="hljs-comment">/*post数据*/</span>&#125;,<br>    <span class="hljs-attr">params</span>:&#123;<span class="hljs-comment">/*GET参数*/</span>&#125;<br>&#125;).<span class="hljs-title function_">then</span>(callback)<br></code></pre></td></tr></table></figure>
+
+<h3 id="四、跨域和JSONP"><a href="#四、跨域和JSONP" class="headerlink" title="四、跨域和JSONP"></a>四、跨域和JSONP</h3><h4 id="1）同源策略和跨域"><a href="#1）同源策略和跨域" class="headerlink" title="1）同源策略和跨域"></a>1）同源策略和跨域</h4><p>如果两个页面的协议，域名和端口都相同，则两个页面具有相同的源</p>
+<p><strong>同源策略</strong></p>
+<p>全称(Same origin policy)是浏览器提供的一个安全功能</p>
+<p>MDN官方给定的概念：同源策略限制了从同一个源加载的文档或脚本如何于来自另一个源的资源进行交互。这是一个用于隔离潜在恶意文件的重要安全机制。</p>
+<p>通俗的理解：浏览器规定，A网站的JavaScript，不允许和非同源的网站C之间，进行资源的交互，例如：</p>
+<p>①无法读取非同源网页的Cookie、LocalStorage和IndexedDB</p>
+<p>②无法接触非同源网站的DOM</p>
+<p>③无法向非同源地址发送Ajax请求</p>
+<p><strong>跨域</strong></p>
+<p>只要不同源就是跨域</p>
+<p>出现跨域的根本原因：浏览器的同源策略不允许非同源的URL之间进行资源的交互</p>
+<p><strong>如何实现跨域数据请求</strong></p>
+<p>主要两种解决方案：JSONP和CORS</p>
+<p>JSONP：出现的早，兼容性好，临时解决方案，只支持GET请求</p>
+<p>CORS：出现的较晚，是W3C标准，属于跨域Ajax请求的根本解决方案，支持GET和POST请求，缺点是不兼容低版本浏览器</p>
+<h4 id="2）JSONP"><a href="#2）JSONP" class="headerlink" title="2）JSONP"></a>2）JSONP</h4><p>JSONP（JSON with Padding)是JSON的一种”使用模式“，可用于解决主流浏览器的跨域数据访问的问题</p>
+<p>原理：&lt;script&gt;标签不受浏览器同源策略的影响，可以通过src属性，请求非同源的js脚本</p>
+<p>因此，JSONP的实现原理，就是通过&lt;script&gt;标签的src属性，请求跨域的数据接口，并通过函数调用的形式接收跨域接口响应会回来的数据。</p>
+<h4 id="3）防抖"><a href="#3）防抖" class="headerlink" title="3）防抖"></a>3）防抖</h4><p>防抖策略（debounce）是当事件触发后，延迟n秒后再执行回调，如果在这n秒内又被触发，则重新计时</p>
+<p>能够保证事件被反复触发的时候回调只触发一次</p>
+<p><img src="https://s2.loli.net/2022/03/18/bej7lmkExu9Angr.png" srcset="/blog/img/loading.gif" lazyload alt="image.png"></p>
+<p><strong>实现输入框防抖</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> timer = <span class="hljs-literal">null</span> <span class="hljs-comment">//1.防抖的timer</span><br><br>functiopn <span class="hljs-title function_">debounceSearch</span>(<span class="hljs-params">keywords</span>)&#123; <span class="hljs-comment">//2.定义防抖的函数</span><br>    timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-title function_">funciton</span>(<span class="hljs-params"></span>)&#123;<br>                      <span class="hljs-comment">//发起JSONP请求</span><br>                       <span class="hljs-title function_">getSuggestList</span>(keywords)<br>                       &#125;,<span class="hljs-number">500</span>)<br>&#125;<br>$(<span class="hljs-string">&#x27;#ipt&#x27;</span>).<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;keyup&#x27;</span>,<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-built_in">clearTimeout</span>(timer)<br>    <span class="hljs-title function_">debounceSearch</span>(keywords)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h4 id="4-节流"><a href="#4-节流" class="headerlink" title="4)节流"></a>4)节流</h4><p>节流策略（throttle)，可以减少一段时间内事件的触发频率</p>
+<p><strong>节流的应用场景</strong></p>
+<p>①鼠标连续不断地触发某事件（如点击），只在单位时间内只触发一次</p>
+<p>②懒加载时要监听计算滚动条的位置，但不必每次滑动都触发，可以降低计算的频率，而不去浪费CPU资源</p>
+<h4 id="五、HTTP协议"><a href="#五、HTTP协议" class="headerlink" title="五、HTTP协议"></a>五、HTTP协议</h4><h5 id="1-HTTP协议简介"><a href="#1-HTTP协议简介" class="headerlink" title="1.HTTP协议简介"></a>1.HTTP协议简介</h5><p>通信协议（Communication protocol)是指通信的双方完成通信所必须遵守的规则和约定。</p>
+<p>通俗的理解：通信双方采用约定好的格式来发送和接收消息，这种事先约定好的通信格式，就叫通信协议</p>
+<p>网络内容的传输协议又叫做超文本传输协议（HyperText Transfer Protocol）简称HTTP协议</p>
+<h5 id="2-HTTP请求消息的组成部分"><a href="#2-HTTP请求消息的组成部分" class="headerlink" title="2.HTTP请求消息的组成部分"></a>2.HTTP请求消息的组成部分</h5><p>HTTP请求消息由请求行(request line)、请求头部(header)、空行和请求体4个部分组成。</p>
+<p><img src="https://s2.loli.net/2022/03/18/2b4F6PsyUcmVNgG.png" srcset="/blog/img/loading.gif" lazyload alt="image.png"></p>
+<p><strong>请求行的组成</strong></p>
+<p><img src="https://s2.loli.net/2022/03/18/xlz8ytTib3fGmMI.png" srcset="/blog/img/loading.gif" lazyload alt="image.png"></p>
+<p><strong>请求头部</strong></p>
+<p>请求头部用来描述客户端的基本信息，从而把客户端相关的信息告知服务器</p>
+<ul>
+<li>User-Agent说明当前是什么浏览器</li>
+<li>Content-Type用来描述发送到服务器的数据格式</li>
+<li>Accept用来描述客户端能够接收什么类型的返回内容；</li>
+<li>Accept-Languege用来描述客户端期望接收哪种人类语言的文本内容</li>
+</ul>
+<p>请求头由多行键值对组成，每行的键和值之间用英文的冒号分割</p>
+<p><strong>空行</strong></p>
+<p>最后一个请求头字段的后面是一个空行，通知服务器请求头部至此结束，用来分割请求头和请求体</p>
+<p><strong>请求体</strong></p>
+<p>请求体中存放的，是要通过POST方式提交到服务器的数据，只有POST请求才有，GET请求没有</p>
+<h5 id="3-HTTP响应消息"><a href="#3-HTTP响应消息" class="headerlink" title="3.HTTP响应消息"></a>3.HTTP响应消息</h5><p>HTTP响应消息由状态行、响应头部、空行和响应体四个部分组成</p>
+<p><img src="https://s2.loli.net/2022/03/18/JjGAo1ZzagcQOLM.png" srcset="/blog/img/loading.gif" lazyload alt="image.png"></p>
+<p><strong>状态行</strong></p>
+<p>状态行由HTTP协议版本、状态码和状态码的描述文本3个部分组成，他们之间用空格隔开</p>
+<p><img src="https://s2.loli.net/2022/03/18/VzY2WoGOaMj3ch4.png" srcset="/blog/img/loading.gif" lazyload alt="image.png"></p>
+<p><strong>响应头部</strong></p>
+<p>响应头部用来描述服务器的基本信息，响应头部由多行键值对组成</p>
+<p><img src="https://s2.loli.net/2022/03/18/AFfIRg9uPL6vC2m.png" srcset="/blog/img/loading.gif" lazyload alt="image.png"></p>
+<p><strong>空行</strong></p>
+<p>分割响应头部和响应体</p>
+<h4 id="4-HTTP请求方法"><a href="#4-HTTP请求方法" class="headerlink" title="4.HTTP请求方法"></a>4.HTTP请求方法</h4><p>HTTP请求方法用来表明要对服务器上的资源执行的操作，最常见的是GET和POST</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>GET</td>
+<td>查询</td>
+</tr>
+<tr>
+<td>2</td>
+<td>POST</td>
+<td>新增</td>
+</tr>
+<tr>
+<td>3</td>
+<td>PUT</td>
+<td>修改</td>
+</tr>
+<tr>
+<td>4</td>
+<td>DELETE</td>
+<td>删除</td>
+</tr>
+<tr>
+<td>5</td>
+<td>HEAD</td>
+<td>与GET类似，没有响应体</td>
+</tr>
+<tr>
+<td>6</td>
+<td>OPTIONS</td>
+<td>获取http服务器支持的http请求方法，允许客户端查看服务器的性能，比如ajax跨域时的预检等</td>
+</tr>
+<tr>
+<td>7</td>
+<td>CONNECT</td>
+<td>建立一个到由目标资源标识的服务器的隧道</td>
+</tr>
+<tr>
+<td>8</td>
+<td>TRACE</td>
+<td>沿着目标资源的路径执行一个消息环回测试，主要用于测试或诊断</td>
+</tr>
+<tr>
+<td>9</td>
+<td>PATCH</td>
+<td>是对PUT方法的补充，用来对已知资源进行局部更新</td>
+</tr>
+</tbody></table>
+<h5 id="5-HTTP响应状态码"><a href="#5-HTTP响应状态码" class="headerlink" title="5.HTTP响应状态码"></a>5.HTTP响应状态码</h5><table>
+<thead>
+<tr>
+<th>分类</th>
+<th>分类描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1**</td>
+<td>信息，服务器收到请求，需要请求者继续执行操作（实际开发中很少遇到）</td>
+</tr>
+<tr>
+<td>2**</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>3**</td>
+<td>重定向，需要进一步操作以完成请求</td>
+</tr>
+<tr>
+<td>4**</td>
+<td>客户端错误，请求包含语法错误或无法完成请求</td>
+</tr>
+<tr>
+<td>5**</td>
+<td>服务器错误，服务器在处理请求的过程中发生了错误</td>
+</tr>
+</tbody></table>
+<p><strong>常见的2**成功相关响应状态码</strong></p>
+<table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>状态码英文名称</th>
+<th>中文描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>200</td>
+<td>OK</td>
+<td>请求成功，一般用于GET与POST请求</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created</td>
+<td>已创建，成功请求并创建了新的资源，通常用于POST或PUT请求</td>
+</tr>
+</tbody></table>
+<p><strong>常见的3**成功相关响应状态码</strong></p>
+<table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>状态码英文名称</th>
+<th>中文描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>301</td>
+<td>Moved Permanently</td>
+<td>永久移动，请求的资源已经被永久的移动到新URI，返回信息会包括新的URI，浏览器会自动定向到新的URI，今后任何新的请求都应使用新的URI代替</td>
+</tr>
+<tr>
+<td>302</td>
+<td>Found</td>
+<td>临时移动，与301类似，但资源只是临时被移动，客户端应继续使用原有的URI</td>
+</tr>
+<tr>
+<td>304</td>
+<td>Not Modified</td>
+<td>未修改，所请求的资源未修改，服务器返回次状态码时，不会返回任何资源（响应消息中不包含响应体），客户端通常会缓存访问过的资源</td>
+</tr>
+</tbody></table>
+<p><strong>常见的4**成功相关响应状态码</strong></p>
+<table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>状态码英文名称</th>
+<th>中文描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>400</td>
+<td>Bad Request</td>
+<td>1、语法有误 2、请求参数有误</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td>当前请求需要用户验证</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td>服务器已经理解请求，但是拒绝执行它</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>服务器无法根据客户端的请求找到资源（网页）</td>
+</tr>
+<tr>
+<td>408</td>
+<td>Request Timeout</td>
+<td>请求超时，服务器等待客户端发送的请求时间过长，超时</td>
+</tr>
+</tbody></table>
+<p><strong>常见的5**成功相关响应状态码</strong></p>
+<table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>状态码英文名称</th>
+<th>中文描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>500</td>
+<td>Internal Sever Error</td>
+<td>服务器内部错误</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+<td>服务器不支持改请求方法，只有GET和HEAD请求是要求每个服务器必须支持的</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+<td>由于超载或系统维护，服务器暂时无法处理客户端请求</td>
+</tr>
+</tbody></table>
+<h4 id="五、GIT"><a href="#五、GIT" class="headerlink" title="五、GIT"></a>五、GIT</h4><h4 id="1-Git中的三个区域"><a href="#1-Git中的三个区域" class="headerlink" title="1.Git中的三个区域"></a>1.Git中的三个区域</h4><p>工作区：处理工作的区域</p>
+<p>暂存区：已完成的工作的临时存放区域，等待被提交</p>
+<p>Git仓库：最终存放区域</p>
+<h4 id="2-Git中的三种状态"><a href="#2-Git中的三种状态" class="headerlink" title="2.Git中的三种状态"></a>2.Git中的三种状态</h4><p>已修改(modified)：修改了文件，但还没将修改的结果放到暂存区</p>
+<p>已暂存(staged)：表示对已修改文件的当前版本做了标记，使之包含在下次提交的列表种</p>
+<p>已提交(committed)：表示文件已经安全地保存在本地的Git仓库中</p>
+<h4 id="3-工作区中文件的4种状态"><a href="#3-工作区中文件的4种状态" class="headerlink" title="3.工作区中文件的4种状态"></a>3.工作区中文件的4种状态</h4><p><img src="https://s2.loli.net/2022/03/19/aVdWl9piI6D4TFM.png" srcset="/blog/img/loading.gif" lazyload alt="image-20220318211926633"></p>
+<h4 id="4-跳过使用暂存区域"><a href="#4-跳过使用暂存区域" class="headerlink" title="4.跳过使用暂存区域"></a>4.跳过使用暂存区域</h4><p><img src="https://s2.loli.net/2022/03/19/wYFeo9n7WgN4k56.png" srcset="/blog/img/loading.gif" lazyload alt="image-20220318212301792"></p>
+<h4 id="5-移除文件"><a href="#5-移除文件" class="headerlink" title="5.移除文件"></a>5.移除文件</h4><p><img src="https://s2.loli.net/2022/03/19/JbPLBfIHZcG8CXe.png" srcset="/blog/img/loading.gif" lazyload alt="image-20220318212406963"></p>
+<h5 id="6-gitignore"><a href="#6-gitignore" class="headerlink" title="6. .gitignore"></a>6. .gitignore</h5><p><img src="https://s2.loli.net/2022/03/19/rxfMK5wBAsmv9o6.png" srcset="/blog/img/loading.gif" lazyload alt="image-20220318212600657"></p>
+<h5 id="7-查看提交历史"><a href="#7-查看提交历史" class="headerlink" title="7.查看提交历史"></a>7.查看提交历史</h5><p><img src="https://s2.loli.net/2022/03/19/IKs2gU9THmlzFwN.png" srcset="/blog/img/loading.gif" lazyload alt="image-20220318212639718"></p>
+<h5 id="8-回退到指定版本"><a href="#8-回退到指定版本" class="headerlink" title="8.回退到指定版本"></a>8.回退到指定版本</h5><p><img src="https://s2.loli.net/2022/03/19/mTzBnjPDf6KRixV.png" srcset="/blog/img/loading.gif" lazyload alt="image-20220318212711419"></p>
+<h5 id="9-上传GitHub"><a href="#9-上传GitHub" class="headerlink" title="9.上传GitHub"></a>9.上传GitHub</h5><p><img src="https://s2.loli.net/2022/03/19/WHnFjoZds1LPhv3.png" srcset="/blog/img/loading.gif" lazyload alt="image-20220318212940161"></p>
+<h5 id="10-分支的作用"><a href="#10-分支的作用" class="headerlink" title="10.分支的作用"></a>10.分支的作用</h5><p><img src="https://s2.loli.net/2022/03/19/pxhiMtAP5IdK71o.png" srcset="/blog/img/loading.gif" lazyload alt="image-20220318213113191"></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/blog/categories/Web/">Web</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/blog/tags/Web/">Web</a>
+                    
+                      <a class="hover-with-bg" href="/blog/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+                    
+                      <a class="hover-with-bg" href="/blog/tags/JS/">JS</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/blog/2022/03/19/ES6%E6%A8%A1%E5%9D%97%E5%8C%96%E4%B8%8E%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ES6模块化与异步编程学习笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/blog/2022/03/17/JavaScript%E8%BF%9B%E9%98%B6%E4%B8%8EES6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                        <span class="hidden-mobile">JavaScript进阶与ES6学习笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'EndlessSky512/Blog-Comments-Utterance');
+      s.setAttribute('issue-term', 'title');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        浙ICP备2022002368号
+      </a>
+    </span>
+    
+      
+        <span>
+          <a
+            href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33020502000656"
+            rel="nofollow noopener"
+            class="beian-police"
+            target="_blank"
+          >
+            
+              <span style="visibility: hidden; width: 0">|</span>
+              <img src="/blog/img/police_beian.png" srcset="/blog/img/loading.gif" lazyload alt="police-icon"/>
+            
+            <span>浙公网安备33020502000656号</span>
+          </a>
+        </span>
+      
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/blog/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/blog/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/blog/js/boot.js" ></script>
+
+
+</body>
+</html>
