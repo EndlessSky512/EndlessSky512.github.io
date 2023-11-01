@@ -1,0 +1,848 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/blog/img/favicon.png">
+  <link rel="icon" href="/blog/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="BETA">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="二、vue基础入门1）vue的特性 数据驱动视图 双向数据绑定  数据驱动视图 在使用了vue的页面中，vue会监听数据的变化，从而自动重新渲染页面的结构，示意图如下：  注意：数据驱动视图是单向的数据绑定。 双向数据绑定 在网页中，form表单负责采集数据，Ajax负责提交数据 在vue中，在填写表单时，双向数据绑定可以辅助开发者在不操作DOM的前提下，自动把用户填写的内容同步到数据源中  好处">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Vue学习笔记】二、vue基础入门">
+<meta property="og:url" content="http://www.techbeta.top/blog/2022/03/20/%E3%80%90Vue%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%E4%BA%8C%E3%80%81vue%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="BETA的技术分享小站">
+<meta property="og:description" content="二、vue基础入门1）vue的特性 数据驱动视图 双向数据绑定  数据驱动视图 在使用了vue的页面中，vue会监听数据的变化，从而自动重新渲染页面的结构，示意图如下：  注意：数据驱动视图是单向的数据绑定。 双向数据绑定 在网页中，form表单负责采集数据，Ajax负责提交数据 在vue中，在填写表单时，双向数据绑定可以辅助开发者在不操作DOM的前提下，自动把用户填写的内容同步到数据源中  好处">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.techbeta.top/blog/img/pageimg/vuelogo.png">
+<meta property="article:published_time" content="2022-03-20T12:43:30.000Z">
+<meta property="article:modified_time" content="2022-03-20T12:44:44.195Z">
+<meta property="article:author" content="BETA">
+<meta property="article:tag" content="Web">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="Vue.js">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://www.techbeta.top/blog/img/pageimg/vuelogo.png">
+  
+  
+  <title>【Vue学习笔记】二、vue基础入门 - BETA的技术分享小站</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/blog/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"www.techbeta.top","root":"/blog/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":"c692a17b6d8dc9a194a364e7c2f8d5d1","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/blog/local-search.xml"};
+  </script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/blog/">
+      <strong>BETA&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/blog/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="【Vue学习笔记】二、vue基础入门">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-20 20:43" pubdate>
+        2022年3月20日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      11k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      89 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【Vue学习笔记】二、vue基础入门</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2 个月前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h3 id="二、vue基础入门"><a href="#二、vue基础入门" class="headerlink" title="二、vue基础入门"></a>二、vue基础入门</h3><h4 id="1）vue的特性"><a href="#1）vue的特性" class="headerlink" title="1）vue的特性"></a>1）vue的特性</h4><ul>
+<li>数据驱动视图</li>
+<li>双向数据绑定</li>
+</ul>
+<p><strong>数据驱动视图</strong></p>
+<p>在使用了vue的页面中，vue会<strong>监听数据的变化</strong>，从而自动重新渲染页面的结构，示意图如下：</p>
+<p><img src="https://s2.loli.net/2022/03/20/dpCgbhlPXoWrYJs.png" srcset="/blog/img/loading.gif" lazyload alt="image-20220320123228267"></p>
+<p>注意：数据驱动视图是单向的数据绑定。</p>
+<p><strong>双向数据绑定</strong></p>
+<p>在网页中，form表单负责<strong>采集数据</strong>，Ajax负责<strong>提交数据</strong></p>
+<p>在vue中，在填写表单时，双向数据绑定可以辅助开发者在不操作DOM的前提下，自动把用户填写的内容同步到数据源中</p>
+<p><img src="https://s2.loli.net/2022/03/20/ex3WudHXcsmo1CJ.png" srcset="/blog/img/loading.gif" lazyload alt="image-20220320123736001"></p>
+<p>好处：不用手动操作DOM来获取表单元素最新的值</p>
+<h4 id="2）MVVM"><a href="#2）MVVM" class="headerlink" title="2）MVVM"></a>2）MVVM</h4><p>MVVM是vue实现<strong>数据驱动视图</strong>和<strong>双向数据绑定</strong>的核心原理，MVVM指的是Model、View和ViewModel，它把每个HTML页面都拆分成了三个部分</p>
+<p><img src="https://s2.loli.net/2022/03/20/AWcbtsCI3rNTYqg.png" srcset="/blog/img/loading.gif" lazyload alt="image-20220320124040646"></p>
+<p>ViewModel作为MVVM的核心，是它把当前页面的**数据源(Model)<strong>和</strong>页面的结构(View)**连接在了一起</p>
+<p><img src="https://s2.loli.net/2022/03/20/7togxUbcT6i9nYG.png" srcset="/blog/img/loading.gif" lazyload alt="image-20220320124206739"></p>
+<h4 id="3）vue的基本使用"><a href="#3）vue的基本使用" class="headerlink" title="3）vue的基本使用"></a>3）vue的基本使用</h4><h5 id="1-基本使用步骤"><a href="#1-基本使用步骤" class="headerlink" title="1.基本使用步骤"></a>1.基本使用步骤</h5><ol>
+<li>导入vue.js的script脚本文件</li>
+<li>在页面声明一个将要被vue所控制的DOM区域</li>
+<li>创建vm实例对象（vue实例对象）</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></div></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 希望vue能够控制下面的这个div，帮我们把数据填充到div内部 --&gt;</span><br>    <span class="hljs-comment">&lt;!-- 固定语法双花括号表示要渲染的数据 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span>&#123;&#123;  username &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 1.导入Vue的库文件 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./lib/vue.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 2.创建Vue实例 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">        <span class="hljs-comment">//创建vue的实例对象</span></span><br><span class="language-javascript">        <span class="hljs-keyword">const</span> vm = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;</span><br><span class="language-javascript">            <span class="hljs-comment">//el属性是固定的写法，表示当前vm实例要控制页面上的哪个区域，接收的值是一个选择器</span></span><br><span class="language-javascript">            <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,</span><br><span class="language-javascript">            <span class="hljs-comment">//data对象就是要渲染到页面上的数据</span></span><br><span class="language-javascript">            <span class="hljs-attr">data</span>: &#123;</span><br><span class="language-javascript">                <span class="hljs-attr">username</span>: <span class="hljs-string">&#x27;zhangsan&#x27;</span></span><br><span class="language-javascript">            &#125;</span><br><span class="language-javascript">        &#125;)</span><br><span class="language-javascript">    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="4）Vue的指令与过滤器"><a href="#4）Vue的指令与过滤器" class="headerlink" title="4）Vue的指令与过滤器"></a>4）Vue的指令与过滤器</h4><h6 id="1-指令的概念"><a href="#1-指令的概念" class="headerlink" title="1.指令的概念"></a>1.指令的概念</h6><p>指令(Directives)是vue为开发者提供的模板语法，用于辅助开发者渲染页面的基本结构</p>
+<p>指令分为6大类：</p>
+<ul>
+<li>内容渲染指令</li>
+<li>属性绑定指令</li>
+<li>事件绑定指令</li>
+<li>双向绑定指令</li>
+<li>条件渲染指令</li>
+<li>列表渲染指令</li>
+</ul>
+<h6 id="2-内容渲染指令"><a href="#2-内容渲染指令" class="headerlink" title="2.内容渲染指令"></a>2.内容渲染指令</h6><p>内容渲染指令用来辅助开发者渲染DOM元素的文本内容，常用的内容渲染指令有如下3个：</p>
+<ul>
+<li><code>v-text</code></li>
+<li><code>&#123;&#123;&#125;&#125;`
+- `v-html`
+
+**`v-text`**
+
+用法示例：
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 把username的值渲染到p标签中 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-text</span>=<span class="hljs-string">&quot;username&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 把gender的值渲染到p标签中，覆盖掉“性别” --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-text</span>=<span class="hljs-string">&quot;gender&quot;</span>&gt;</span>性别<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br> <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+`v-text`指令的缺点：会覆盖掉元素内部的内容
+
+**`&#123;&#123; &#125;&#125;</code>语法**</li>
+</ul>
+<p>这种语法的专业名称是插值表达式</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 使用&#123;&#123;&#125;&#125;插值表达式，将对应的值渲染到元素的内容节点中 --&gt;</span><br>    <span class="hljs-comment">&lt;!-- 同时奥六元素自身的默认值 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>姓名：&#123;&#123;username&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>性别：&#123;&#123;gender&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>插值表达式在实际开发中用的最多，只是内容的占位符，不会覆盖原有的内容</p>
+<p><strong><code>v-html</code>指令</strong></p>
+<p><code>v-text</code>指令和差值表达式只能渲染纯文本内容，如果要把包含html标签的字符串渲染为页面HTML元素，需要用到<code>v-html</code>这个指令</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">data</span>:&#123;<br>    <span class="hljs-attr">info</span>:<span class="hljs-string">&#x27;&lt;h4 style=&quot;color:red;font-weight:bold&quot;&gt;信息&lt;/h4&gt;&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-html</span>=<span class="hljs-string">&quot;info&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h6 id="3-属性绑定指令"><a href="#3-属性绑定指令" class="headerlink" title="3.属性绑定指令"></a>3.属性绑定指令</h6><p>插值表达式不能用在属性节点</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> vm = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;<br>            <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,<br>            <span class="hljs-attr">data</span>: &#123;<br>                <span class="hljs-attr">tips</span>:<span class="hljs-string">&#x27;请输入用户名&#x27;</span><br>            &#125;<br>        &#125;)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- 错误示范，会报错 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;&#123;&#123;tips&#125;&#125;&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>如果需要为元素的属性动态绑定属性值，则需要用到<code>v-bind</code>属性绑定指令</p>
+<p>用法：<code>v-bind:需要绑定的属性=&quot;属性&quot;</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">v-bind:placeholder</span>=<span class="hljs-string">&quot;tips&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>vue规定，<code>v-bind</code>可以简写为:</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">:placeholder</span>=<span class="hljs-string">&quot;tips&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h6 id="4-使用Javascript表达式"><a href="#4-使用Javascript表达式" class="headerlink" title="4.使用Javascript表达式"></a>4.使用Javascript表达式</h6><p>在vue提供的模板渲染语法中，除了支持绑定简单的数据值之外，还支持javascript表达式的运算</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs vue">&#123;&#123; number + 1 &#125;&#125;<br><br>&#123;&#123; ok ? &#x27;YES&#x27; : &#x27;NO&#x27;&#125;&#125;<br><br>&#123;&#123; message.split(&#x27;&#x27;&#125;.reverse().join(&#x27;&#x27;) &#125;<br><br> &lt;div :id=&quot;&#x27;list-&#x27; + id&quot;&gt;&lt;/div&gt;<br></code></pre></td></tr></table></figure>
+
+<h6 id="5-事件绑定指令"><a href="#5-事件绑定指令" class="headerlink" title="5.事件绑定指令"></a>5.事件绑定指令</h6><p><strong>v-on</strong></p>
+<p>vue提供了<code>v-on</code>事件绑定指令，用来辅助成需要为DOM元素绑定事件监听</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>count 的值是：&#123;&#123; count &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">v-on:click</span>=<span class="hljs-string">&quot;add&quot;</span>&gt;</span>+1<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>事件处理函数定义在vue构造函数的<code>methods</code>里</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//完整写法</span><br><span class="hljs-attr">methods</span>:&#123;<br>    <span class="hljs-attr">add</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    &#125;<br>&#125;<br><span class="hljs-comment">//简写写法，去掉冒号和function</span><br><span class="hljs-attr">methods</span>:&#123;<br>    <span class="hljs-title function_">add</span>(<span class="hljs-params"></span>) &#123;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>通过<code>this</code>访问数据源中的数据</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">methods</span>:&#123;<br>    <span class="hljs-title function_">add</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">count</span>+=<span class="hljs-number">1</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>绑定事件并传参</strong></p>
+<p>为了让方法更加通用，可以设定参数，在绑定事件的同时用()就可以直接传参</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">methods</span>:&#123;<br>    <span class="hljs-title function_">add</span>(<span class="hljs-params">n</span>) &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">count</span>+=n;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>count 的值是：&#123;&#123; count &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">v-on:click</span>=<span class="hljs-string">&quot;add(2)&quot;</span>&gt;</span>+1<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>v-on指令可以被简写为<code>@</code></strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>count 的值是：&#123;&#123; count &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;add(2)&quot;</span>&gt;</span>+1<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>注意：原生DOM对象有<code>onclick、oninput、onkeyup</code>等原生事件，替换为vue的事件绑定形式后，分别为<code>v-on:click、v-on:input、v-on:keyup</code>，直接把原生的on替换为<code>@</code>即可</p>
+<h6 id="6-事件绑定-event"><a href="#6-事件绑定-event" class="headerlink" title="6.事件绑定 $event"></a>6.事件绑定 $event</h6><p>使用v-on绑定事件的时候，不传参也会默认传递一个事件对象event，可以根据event来操作DOM</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">methods</span>:&#123;<br>    <span class="hljs-title function_">add</span>(<span class="hljs-params">e</span>) &#123;<br>        e.<span class="hljs-property">target</span>.<span class="hljs-property">style</span>.<span class="hljs-property">backgroundColor</span> = <span class="hljs-string">&#x27;red&#x27;</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>如果传递了参数，事件对象会被覆盖掉，此时可以使用vue提供的内置变量，名字叫做<code>$event</code>，它就是原生DOM的事件对象e</p>
+<p>在绑定事件时把<code>$event</code>作为参数传递</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>count 的值是：&#123;&#123; count &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;add(2, $event)&quot;</span>&gt;</span>+1<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">methods</span>:&#123;<br>    <span class="hljs-title function_">add</span>(<span class="hljs-params">n,e</span>) &#123;<br>        e.<span class="hljs-property">target</span>.<span class="hljs-property">style</span>.<span class="hljs-property">backgroundColor</span> = <span class="hljs-string">&#x27;red&#x27;</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h6 id="7-事件修饰符"><a href="#7-事件修饰符" class="headerlink" title="7.事件修饰符"></a>7.事件修饰符</h6><p>原生阻止默认行为需要操作事件对象<code>e.preventDefault()</code>，在vue中，可以在绑定v-on时增加<code>.prevent</code>，即可完成阻止默认事件的操作</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span> = <span class="hljs-string">&quot;app&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;http://www.baidu.com&quot;</span> @<span class="hljs-attr">click.prevent</span>=<span class="hljs-string">&quot;show&quot;</span>&gt;</span>跳转到百度首页<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>常用的5个事件修饰符如下</p>
+<table>
+<thead>
+<tr>
+<th>事件修饰符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>.prevent</td>
+<td>阻止默认行为（例如：阻止a链接的跳转、阻止表单的提交等） = e.preventDefault()</td>
+</tr>
+<tr>
+<td>.stop</td>
+<td>阻止事件冒泡 = e.stopPropagation()</td>
+</tr>
+<tr>
+<td>.capture</td>
+<td>以捕获模式触发当前的事件处理函数</td>
+</tr>
+<tr>
+<td>.once</td>
+<td>绑定的事件只触发1次</td>
+</tr>
+<tr>
+<td>.self</td>
+<td>只有在event.targe是当前元素自身时触发事件处理函数</td>
+</tr>
+</tbody></table>
+<h6 id="8-按键修饰符"><a href="#8-按键修饰符" class="headerlink" title="8.按键修饰符"></a>8.按键修饰符</h6><p>在监听键盘事件时，我们经常需要判断详细的按键，此时可以为键盘相关的事件添加按键修饰符，例如</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 只有在&#x27;key&#x27;是&#x27;Enter‘时调用&#x27;vm.submit()&#x27; --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> @<span class="hljs-attr">keyup.enter</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!-- 只有在&#x27;key&#x27;是&#x27;Esc‘时调用&#x27;vm.cleanInput()&#x27; --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> @<span class="hljs-attr">keyup.esc</span>=<span class="hljs-string">&quot;cleanInput&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h6 id="9-双向绑定指令v-model"><a href="#9-双向绑定指令v-model" class="headerlink" title="9.双向绑定指令v-model"></a>9.双向绑定指令<code>v-model</code></h6><p>vue提供了<code>v-model</code>双向数据绑定指令，用来辅助开发者在不操作DOM的前提下，快速获取表单的数据</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>用户名是：&#123;&#123; username &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;username&quot;</span> /&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>选中的省份是：&#123;&#123; province &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;province&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span>请选择<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;1&quot;</span>&gt;</span>北京<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;2&quot;</span>&gt;</span>上海<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;3&quot;</span>&gt;</span>深圳<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>只有表单元素才可使用<code>v-model</code></p>
+<ol>
+<li>input输入框<ul>
+<li>type=”radio”</li>
+<li>type=”checkboc”</li>
+<li>type=”xxxx”</li>
+</ul>
+</li>
+<li>textarea</li>
+<li>select</li>
+</ol>
+<h6 id="10-v-model的修饰符"><a href="#10-v-model的修饰符" class="headerlink" title="10.v-model的修饰符"></a>10.<code>v-model</code>的修饰符</h6><p>为了对用户输入的内容进行处理，vue为v-model指令提供了3个修饰符，分别是：</p>
+<table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>作用</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>.number</td>
+<td>自动将用户的输入值转为数值类型</td>
+<td><input v-model.number="age" /></td>
+</tr>
+<tr>
+<td>.trim</td>
+<td>自动过滤用户输入的首尾空白字符</td>
+<td><input v-model.trim="msg" /></td>
+</tr>
+<tr>
+<td>.lazy</td>
+<td>在“change”时而非”input”时更新</td>
+<td><input v-model.lazy="msg" /></td>
+</tr>
+</tbody></table>
+<h6 id="11-条件渲染指令"><a href="#11-条件渲染指令" class="headerlink" title="11.条件渲染指令"></a>11.条件渲染指令</h6><p>条件渲染指令用来辅助开发者按需控制DOM的显示与因此，条件渲染指令有如下两个，分别是：</p>
+<ul>
+<li>v-if</li>
+<li>v-show</li>
+</ul>
+<p>示例用法如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;networkState == 200&quot;</span>&gt;</span> 请求成功 --- 被v-if控制<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-show</span>=<span class="hljs-string">&quot;networkState === 200&quot;</span>&gt;</span>请求成功 --- 被v-show控制<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>区别在于隐藏元素的方式，<code>v-if</code>是动态地移除或创建元素，而<code>v-show</code>是修改<code>style=&#39;display:none;&#39;</code>，如果需要频繁地修改，<code>v-show</code>的性能更好，如果默认不需要被展示，而且后期也很可能不需要被展示出来<code>v-if</code>的性能会更好</p>
+<p>实际开发中，绝大多数情况不需要考虑性能问题，直接使用<code>v-if</code>就好了</p>
+<h6 id="11-v-if配套的指令"><a href="#11-v-if配套的指令" class="headerlink" title="11.v-if配套的指令"></a>11.<code>v-if</code>配套的指令</h6><p><strong>v-else-if</strong></p>
+<p><code>v-else-if</code>指令，顾名思义，充当v-if的“<code>else-if块</code>“，可以连续使用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;type === &#x27;A&#x27;&quot;</span>&gt;</span>优秀<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-else-if</span>=<span class="hljs-string">&quot;type === &#x27;B&#x27;&quot;</span>&gt;</span>良好<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-else-if</span>=<span class="hljs-string">&quot;type === &#x27;C&#x27;&quot;</span>&gt;</span>一般<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-else</span>&gt;</span>差<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>注意：<code>v-else-if</code>指令必须配合<code>v-if</code>指令一起使用，否则它将不会被识别</p>
+<h6 id="12-列表渲染指令"><a href="#12-列表渲染指令" class="headerlink" title="12.列表渲染指令"></a>12.列表渲染指令</h6><p>vue提供了<code>v-for</code>列表渲染指令，用来辅助开发者基于一个数组来循环渲染一个列表结构。<code>v-for</code>指令需要使用<code>item in items</code>形式的特殊语法，其中：</p>
+<ul>
+<li><code>items</code>是待循环的数组</li>
+<li><code>item</code>是被循环的每一项</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">data</span>: &#123;<br>    <span class="hljs-attr">list</span>:[<br>        &#123; <span class="hljs-attr">id</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;zs&#x27;</span> &#125;,<br>        &#123; <span class="hljs-attr">id</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;ls&#x27;</span> &#125;<br>    ]<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;item in list&quot;</span>&gt;</span>姓名是：&#123;&#123;item.name&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong><code>v-for</code>中的索引</strong></p>
+<p>v-for指令还支持一个可选的第二个参数，即当前项的索引，语法格式为<code>(item, index) in times</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;(item, index) in list&quot;</span>&gt;</span>索引是：&#123;&#123; index &#125;&#125;姓名是：&#123;&#123;item.name&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>官方建议：只要用到了<code>v-for</code>指令 ，那么一定要绑定一个<code>:key</code>属性，而且，尽量把<code>id</code>作为<code>key</code>的值</p>
+<p>官方对<code>key</code>的值类型，是有要求的：字符串或数字类型</p>
+<p><code>key</code>值是千万不能重复的，否则会报错</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;(item, index) in list&quot;</span> <span class="hljs-attr">:key</span>=<span class="hljs-string">&quot;item.id&quot;</span>&gt;</span><br>            索引是：&#123;&#123; index &#125;&#125;姓名是：&#123;&#123;item.name&#125;&#125;<br>        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h6 id="13-过滤器"><a href="#13-过滤器" class="headerlink" title="13.过滤器"></a>13.过滤器</h6><blockquote>
+<p>过滤器在vue3已经被删除，只需了解即可！</p>
+<p>在vue3中，官方建议使用计算属性或方法代替被剔除的过滤器功能</p>
+</blockquote>
+<p>过滤器(Filters)是vue为开发者提供的功能，常用于文本的格式化，过滤器可以用在两个地方：插值表达式和<code>v-bind</code>属性绑定</p>
+<p>其中<code>|</code>叫做管道符</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-comment">&lt;!--调用了capitalize过滤器，来对message的首字母大写 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>&#123;&#123; message | capitalize&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br><span class="hljs-comment">&lt;!--调用了formatId过滤器，来对rawID操作 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">:id</span>=<span class="hljs-string">&quot;rawId | formatId&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>过滤器函数，必须被定义到filters节点之下</p>
+<p>过滤器本质上是函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">filters</span>:&#123;<br>    <span class="hljs-comment">//过滤器函数形参中的val永远都是管道符前面的值</span><br>    <span class="hljs-title function_">capitalize</span>(<span class="hljs-params">val</span>)&#123;<br>        <span class="hljs-comment">//过滤器中，一定要有返回值</span><br>        <span class="hljs-keyword">const</span> first = val.<span class="hljs-title function_">charAt</span>(<span class="hljs-number">0</span>).<span class="hljs-title function_">toUpperCase</span>()<br>        <span class="hljs-comment">//slice方法截取字符串，从指定索引往后截取</span><br>        <span class="hljs-keyword">const</span> other = val.<span class="hljs-title function_">slice</span>(<span class="hljs-number">1</span>)<br>        <span class="hljs-keyword">return</span> first + other;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>私有过滤器和全局过滤器</strong></p>
+<p>定义在<code>filters</code>里的是私有过滤器，只能在当前vue构造函数里<code>el:</code>指定的代码块中有效</p>
+<p>在如果需要在多个vue实例之间共享过滤器，则可以按照如下格式定义全局过滤器：</p>
+<p><img src="https://s2.loli.net/2022/03/20/TcbpE8x2Ce5OvsN.png" srcset="/blog/img/loading.gif" lazyload alt="image-20220320161648974"></p>
+<p><strong>过滤器可以串联使用</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>&#123;&#123; message | filter1 | filter2 | filter3&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>过滤器本质是js函数，因此可以接收参数</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;p&gt;&#123;&#123; message | <span class="hljs-title function_">filter1</span>(arg1,arg2)&#125;&#125;&lt;/p&gt;<br><br><span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">filter</span>(<span class="hljs-string">&#x27;filterA&#x27;</span>,(msg,arg1,arg2)) =&gt; &#123; <span class="hljs-comment">//第一个位置定死了，一定是管道符前面的</span><br>    <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="5）侦听器"><a href="#5）侦听器" class="headerlink" title="5）侦听器"></a>5）侦听器</h4><h5 id="1-什么是watch侦听器"><a href="#1-什么是watch侦听器" class="headerlink" title="1.什么是watch侦听器"></a>1.什么是watch侦听器</h5><p>watch侦听器允许开发者监视数据的变化，从而针对数据的变化做特定的操作</p>
+<p>侦听器本质就是函数，要监听哪个数据的变化，就把数据名作为方法名即可</p>
+<p>语法结构如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> vm = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;<br>    <span class="hljs-attr">el</span>:<span class="hljs-string">&#x27;#app&#x27;</span>,<br>    <span class="hljs-attr">data</span>: &#123; <span class="hljs-attr">username</span>:<span class="hljs-string">&#x27;&#x27;</span> &#125;,<br>    <span class="hljs-attr">watch</span>: &#123;<br>        <span class="hljs-comment">//监听username值的变化</span><br>        <span class="hljs-comment">//newVal是“变化后的新值”，oldVal是“变化之前的旧值”</span><br>        <span class="hljs-title function_">username</span>(<span class="hljs-params">newVal, oldVal</span>)&#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(newVal,oldVal)<br>        &#125;<br>    &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h5 id="2-侦听器的格式"><a href="#2-侦听器的格式" class="headerlink" title="2.侦听器的格式"></a>2.侦听器的格式</h5><ol>
+<li>方法格式的侦听器<ul>
+<li>缺点1：无法在刚进入页面的时候自动触发</li>
+<li>缺点2：如果侦听的是一个对象，如果对象中的属性发生了变化，不会触发侦听器</li>
+</ul>
+</li>
+<li>对象格式的侦听器<ul>
+<li>好处1：可以通过<code>immediate</code>选项，让侦听器自动触发</li>
+<li>好处2：可以通过<code>deep</code>选项，让侦听器深度监听对象中每个属性的变化</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">watch</span>:&#123;<br>    <span class="hljs-comment">//定义对象格式的侦听器</span><br>    <span class="hljs-attr">username</span>:&#123;<br>        <span class="hljs-comment">//侦听器的处理函数</span><br>        <span class="hljs-title function_">handler</span>(<span class="hljs-params">newVal,oldVal</span>)&#123;<br>            <br>        &#125;,<br>        <span class="hljs-attr">immediate</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">//打开页面立即触发一次</span><br>        <span class="hljs-attr">deep</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">//开启深度监听，对象中任何一个属性变化都会触发“对象的侦听器”</span><br>            <br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>要实现需求，先使用简单的方法，解决不了再考虑复杂的方法，优先使用方法格式的侦听器</p>
+<p><strong>侦听对象的属性的变化</strong></p>
+<p>如果要侦听对象里面的属性，必须外层包裹一层单引号</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">data</span>:&#123;<br>    <span class="hljs-attr">info</span>: &#123;<br>        <span class="hljs-attr">username</span>: <span class="hljs-string">&#x27;admin&#x27;</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">watch</span>:&#123;<br>    <span class="hljs-string">&#x27;info.username&#x27;</span>(newVal)&#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(newVal)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="3-案例：判断用户名是否被占用"><a href="#3-案例：判断用户名是否被占用" class="headerlink" title="3.案例：判断用户名是否被占用"></a>3.案例：判断用户名是否被占用</h5><p>监听username值的变化，并使用axios发起Ajax请求，检测当前输入的用户名是否可用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">watch</span>: &#123;<br>    <span class="hljs-comment">//监听username值的变化</span><br>    <span class="hljs-comment">//newVal是“变化后的新值”，oldVal是“变化之前的旧值”</span><br>    <span class="hljs-keyword">async</span> <span class="hljs-title function_">username</span>(<span class="hljs-params">newVal</span>)&#123;<br>        <span class="hljs-keyword">if</span>(newVal === <span class="hljs-string">&#x27;&#x27;</span>) <span class="hljs-keyword">return</span><br>        <span class="hljs-comment">//使用axios发起请求，判断用户名是否可用</span><br>        cosnt&#123; <span class="hljs-attr">data</span>: res &#125; = <span class="hljs-keyword">await</span> axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;https://www.escook.cn/api/finduser/&#x27;</span> + newVal)<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res)<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="6）计算属性"><a href="#6）计算属性" class="headerlink" title="6）计算属性"></a>6）计算属性</h4><p>计算属性指的是通过一系列运算之后，最终得到一个属性值</p>
+<p>这个动态计算出来的属性值可以被模板结构或methods方法使用，示例代码如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> vm = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;<br>    <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,<br>    <span class="hljs-attr">data</span>: &#123;<br>		<span class="hljs-attr">r</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">g</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">b</span>:<span class="hljs-number">0</span><br>    &#125;,<br>    <span class="hljs-attr">computed</span>: &#123;<br>        <span class="hljs-title function_">rgb</span>(<span class="hljs-params"></span>)&#123; <span class="hljs-keyword">return</span> <span class="hljs-string">`rgb(<span class="hljs-subst">$&#123;<span class="hljs-variable language_">this</span>.r&#125;</span>, <span class="hljs-subst">$&#123;<span class="hljs-variable language_">this</span>.g&#125;</span>, <span class="hljs-subst">$&#123;<span class="hljs-variable language_">this</span>.b&#125;</span>)`</span>&#125;<br>    &#125;,<br>    <span class="hljs-attr">methods</span>: &#123;<br>        <span class="hljs-title function_">show</span>(<span class="hljs-params"></span>)&#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">rgb</span>)<br>        &#125;<br>    &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>特点：</p>
+<ol>
+<li>定义的时候要定义为方法</li>
+<li>当作普通的属性使用即可</li>
+</ol>
+<p>好处：</p>
+<ol>
+<li>实现了代码的复用</li>
+<li>只要计算属性中依赖的数据源变化了，则计算属性会自动重新求值</li>
+</ol>
+<h4 id="7）单页面程序"><a href="#7）单页面程序" class="headerlink" title="7）单页面程序"></a>7）单页面程序</h4><h5 id="1-什么是单页面程序"><a href="#1-什么是单页面程序" class="headerlink" title="1.什么是单页面程序"></a>1.什么是单页面程序</h5><p>单页面程序（Single Page Application)简称SPA，顾名思义，指的是一个Web网站中只有唯一的一个HTML页面，所有的功能与交互都在这唯一的一个页面内完成</p>
+<h5 id="2-什么vue-cli"><a href="#2-什么vue-cli" class="headerlink" title="2.什么vue-cli"></a>2.什么vue-cli</h5><p>vue-cli是Vue.js开发的标准工具，它简化了基于webpack创建工程化的Vue项目的过程</p>
+<p>vue-cli是npm上的一个全局包</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-built_in">npm</span> install -g @vue/cli<br></code></pre></td></tr></table></figure>
+
+<p>基于vue-cli快速生成工程化的Vue项目：</p>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gauss">vue <span class="hljs-keyword">create</span> 项目的名称<br></code></pre></td></tr></table></figure>
+
+<h5 id="3-vue项目中src目录的构成"><a href="#3-vue项目中src目录的构成" class="headerlink" title="3.vue项目中src目录的构成"></a>3.vue项目中src目录的构成</h5><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs stylus">assest 文件夹：存放项目中用到的静态资源文件，例如：css样式表、图片资源<br>components 文件夹：程序员封装的、可复用的组件<br><span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.js</span> 是项目的入口文件，整个项目的运行，要先执行<span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.js</span><br>App.vue是项目的根组件<br></code></pre></td></tr></table></figure>
+
+<h5 id="4-vue项目的运行流程"><a href="#4-vue项目的运行流程" class="headerlink" title="4.vue项目的运行流程"></a>4.vue项目的运行流程</h5><p>在工程化的项目中，vue要做的事情非常简单：通过<code>main.js</code>把<code>App.vue</code>渲染到<code>index.html</code>里去</p>
+<p>其中</p>
+<ul>
+<li><code>App.vue</code>用来编写待渲染的模板结构</li>
+<li><code>index.html</code>中需要预留一个el区域</li>
+<li><code>main.js</code>把App.vue渲染到了index.html所预留的区域中</li>
+</ul>
+<p><code>main.js</code>中的<code>.$mount(#app)</code>与el属性是等价的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;<br>  <span class="hljs-attr">render</span>: <span class="hljs-function"><span class="hljs-params">h</span> =&gt;</span> <span class="hljs-title function_">h</span>(<span class="hljs-title class_">App</span>),<br>&#125;).$mount(<span class="hljs-string">&#x27;#app&#x27;</span>) <span class="hljs-comment">//等于el: &#x27;#app&#x27;</span><br></code></pre></td></tr></table></figure>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/blog/categories/Web/">Web</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/blog/tags/Web/">Web</a>
+                    
+                      <a class="hover-with-bg" href="/blog/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+                    
+                      <a class="hover-with-bg" href="/blog/tags/Vue-js/">Vue.js</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/blog/2022/03/22/%E3%80%90Vue%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%E4%B8%89%E3%80%81vue%E7%BB%84%E4%BB%B6%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【Vue学习笔记】三、vue组件与生命周期</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/blog/2022/03/20/%E3%80%90Vue%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%E4%B8%80%E3%80%81%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E4%B8%8EWebpack/">
+                        <span class="hidden-mobile">【Vue学习笔记】一、前端工程化与Webpack</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'EndlessSky512/Blog-Comments-Utterance');
+      s.setAttribute('issue-term', 'title');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        浙ICP备2022002368号
+      </a>
+    </span>
+    
+      
+        <span>
+          <a
+            href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33020502000656"
+            rel="nofollow noopener"
+            class="beian-police"
+            target="_blank"
+          >
+            
+              <span style="visibility: hidden; width: 0">|</span>
+              <img src="/blog/img/police_beian.png" srcset="/blog/img/loading.gif" lazyload alt="police-icon"/>
+            
+            <span>浙公网安备33020502000656号</span>
+          </a>
+        </span>
+      
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/blog/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/blog/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/blog/js/boot.js" ></script>
+
+
+</body>
+</html>
